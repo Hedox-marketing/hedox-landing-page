@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  interpolate-size: allow-keywords;
+}
+
 @theme {
   --font-heading: "Poppins", sans-serif;
   --font-body: "Inter", sans-serif;
