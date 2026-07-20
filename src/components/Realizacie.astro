@@ -8,14 +8,107 @@ import { realizacie } from '../data/content';
     <div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
       {
         realizacie.obrazky.map((src, i) => (
-          <img
-            src={src}
-            alt={`Realizácia fúkanej izolácie ${i + 1}`}
-            class="aspect-[3/4] w-full rounded-lg object-cover"
-            loading="lazy"
-          />
+          <button
+            type="button"
+            class="galeria-polozka cursor-pointer"
+            aria-label={`Zobraziť realizáciu ${i + 1} vo veľkom`}
+          >
+            <img
+              src={src}
+              alt={`Realizácia fúkanej izolácie ${i + 1}`}
+              class="aspect-[3/4] w-full rounded-lg object-cover transition hover:opacity-85"
+              loading="lazy"
+            />
+          </button>
         ))
       }
     </div>
   </div>
 </section>
+
+<div
+  id="galeria-lightbox"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 p-4"
+>
+  <button
+    type="button"
+    id="galeria-zavriet"
+    class="absolute top-4 right-4 cursor-pointer p-2 text-white/80 transition hover:text-white"
+    aria-label="Zavrieť galériu"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-8 w-8">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <button
+    type="button"
+    id="galeria-spat"
+    class="absolute left-2 cursor-pointer p-3 text-white/80 transition hover:text-white md:left-6"
+    aria-label="Predchádzajúca fotka"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-10 w-10">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+    </svg>
+  </button>
+
+  <img
+    id="galeria-obrazok"
+    src={realizacie.obrazky[0]}
+    alt="Realizácia fúkanej izolácie"
+    class="max-h-[85vh] max-w-[85vw] rounded-lg object-contain"
+  />
+
+  <button
+    type="button"
+    id="galeria-dalej"
+    class="absolute right-2 cursor-pointer p-3 text-white/80 transition hover:text-white md:right-6"
+    aria-label="Ďalšia fotka"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-10 w-10">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  const lightbox = document.getElementById('galeria-lightbox');
+  const velkyObrazok = document.getElementById('galeria-obrazok') as HTMLImageElement | null;
+  const polozky = [...document.querySelectorAll<HTMLButtonElement>('.galeria-polozka')];
+  const zdroje = polozky.map((polozka) => polozka.querySelector('img')?.getAttribute('src') ?? '');
+  let aktualna = 0;
+
+  function zobraz(index: number) {
+    aktualna = (index + zdroje.length) % zdroje.length;
+    if (velkyObrazok) velkyObrazok.src = zdroje[aktualna];
+  }
+
+  function otvor(index: number) {
+    zobraz(index);
+    lightbox?.classList.remove('hidden');
+    lightbox?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function zavri() {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  polozky.forEach((polozka, index) => polozka.addEventListener('click', () => otvor(index)));
+  document.getElementById('galeria-zavriet')?.addEventListener('click', zavri);
+  document.getElementById('galeria-spat')?.addEventListener('click', () => zobraz(aktualna - 1));
+  document.getElementById('galeria-dalej')?.addEventListener('click', () => zobraz(aktualna + 1));
+
+  lightbox?.addEventListener('click', (udalost) => {
+    if (udalost.target === lightbox) zavri();
+  });
+
+  document.addEventListener('keydown', (udalost) => {
+    if (!lightbox || lightbox.classList.contains('hidden')) return;
+    if (udalost.key === 'Escape') zavri();
+    if (udalost.key === 'ArrowLeft') zobraz(aktualna - 1);
+    if (udalost.key === 'ArrowRight') zobraz(aktualna + 1);
+  });
+</script>
