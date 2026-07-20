@@ -1,0 +1,23 @@
+---
+import { hero } from '../data/content';
+---
+
+<section
+  class="bg-brand bg-cover bg-right"
+  style="background-image: url('/images/hero-bg.png')"
+>
+  <div class="mx-auto max-w-6xl px-4 py-24 md:py-32">
+    <div class="max-w-xl">
+      <h1 class="font-heading text-4xl font-bold leading-tight text-neutral-900 md:text-5xl">
+        {hero.nadpisPred}<span class="text-brand">{hero.nadpisZelena}</span>{hero.nadpisPo}
+      </h1>
+      <p class="mt-6 text-lg text-neutral-700">{hero.podnadpis}</p>
+      <a
+        href="#formular"
+        class="mt-10 inline-block rounded-lg bg-brand-dark px-8 py-4 font-heading font-semibold text-white transition hover:opacity-90"
+      >
+        {hero.cta}
+      </a>
+    </div>
+  </div>
+</section>
