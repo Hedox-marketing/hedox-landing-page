@@ -141,8 +141,12 @@ export const formular = {
   gdprText: 'Súhlasím so spracovaním osobných údajov',
   gdprUrl: 'https://www.hedox.sk/ochrana-sukromia/',
   odoslat: 'Získať cenovú ponuku zdarma',
-  uspech: 'Ďakujeme! Vaša žiadosť bola odoslaná. Ozveme sa vám do 24 hodín.',
-  chyba: 'Odoslanie sa nepodarilo. Skúste to prosím znova alebo nám zavolajte.',
+};
+
+export const dakujeme = {
+  nadpis: 'Ďakujeme za váš dopyt!',
+  text: 'Vaša žiadosť bola úspešne odoslaná. Ozveme sa vám do 24 hodín s návrhom riešenia a orientačnou kalkuláciou.',
+  tlacidlo: 'Späť na hlavnú stránku',
 };
 
 export const realizacie = {

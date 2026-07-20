@@ -11,10 +11,9 @@ const inputClass =
     <p class="mx-auto mt-4 max-w-lg text-center text-[18px] text-neutral-600">{formular.podnadpis}</p>
 
     <form
-      id="cenova-ponuka-form"
       name="cenova-ponuka"
       method="POST"
-      action="/"
+      action="/dakujeme"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       data-netlify-recaptcha="true"
@@ -91,46 +90,5 @@ const inputClass =
         {formular.odoslat}
       </button>
     </form>
-
-    <div id="form-uspech" hidden class="mt-12 rounded-lg bg-pill/10 p-8 text-center">
-      <p class="font-heading text-xl font-semibold text-brand-dark">{formular.uspech}</p>
-    </div>
-
-    <p id="form-chyba" hidden class="mt-4 rounded-md bg-red-50 p-4 text-center text-sm text-red-700">
-      {formular.chyba}
-    </p>
   </div>
 </section>
-
-<script>
-  const form = document.getElementById('cenova-ponuka-form') as HTMLFormElement | null;
-
-  form?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const tlacidlo = form.querySelector<HTMLButtonElement>('button[type="submit"]');
-    const chyba = document.getElementById('form-chyba');
-    if (tlacidlo) tlacidlo.disabled = true;
-    chyba?.setAttribute('hidden', '');
-
-    try {
-      const data = new FormData(form);
-      const body = new URLSearchParams(
-        [...data.entries()].map(([kluc, hodnota]) => [kluc, String(hodnota)])
-      );
-      const odpoved = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-      });
-      if (!odpoved.ok) throw new Error(`HTTP ${odpoved.status}`);
-
-      // Budúci prechod na samostatnú ďakovaciu stránku = nahradiť nasledujúce
-      // dva riadky za: window.location.href = '/dakujeme';
-      form.hidden = true;
-      document.getElementById('form-uspech')?.removeAttribute('hidden');
-    } catch {
-      chyba?.removeAttribute('hidden');
-      if (tlacidlo) tlacidlo.disabled = false;
-    }
-  });
-</script>

@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { dakujeme } from '../data/content';
+---
+
+<Layout
+  title="Ďakujeme za váš dopyt | Hedox"
+  description="Vaša žiadosť o cenovú ponuku bola úspešne odoslaná. Ozveme sa vám do 24 hodín."
+>
+  <meta name="robots" content="noindex" slot="head" />
+  <Header />
+  <section class="bg-white">
+    <div class="mx-auto flex max-w-2xl flex-col items-center px-4 py-28 text-center md:py-36">
+      <span class="flex h-20 w-20 items-center justify-center rounded-full bg-pill/15 text-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-10 w-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+        </svg>
+      </span>
+      <h1 class="mt-8 font-heading text-[46px] font-bold leading-tight">{dakujeme.nadpis}</h1>
+      <p class="mt-6 max-w-lg text-[18px] text-neutral-600">{dakujeme.text}</p>
+      <a
+        href="/"
+        class="mt-10 inline-block rounded-lg bg-brand-dark px-8 py-4 font-heading text-[20px] font-semibold text-white transition hover:opacity-90"
+      >
+        {dakujeme.tlacidlo}
+      </a>
+    </div>
+  </section>
+  <Footer />
+</Layout>
