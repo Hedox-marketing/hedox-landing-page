@@ -1,0 +1,21 @@
+---
+import { realizacie } from '../data/content';
+---
+
+<section class="bg-white">
+  <div class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="text-center font-heading text-4xl font-bold">{realizacie.nadpis}</h2>
+    <div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+      {
+        realizacie.obrazky.map((src, i) => (
+          <img
+            src={src}
+            alt={`Realizácia fúkanej izolácie ${i + 1}`}
+            class="aspect-[3/4] w-full rounded-lg object-cover"
+            loading="lazy"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
