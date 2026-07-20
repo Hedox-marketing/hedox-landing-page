@@ -3,6 +3,7 @@ import { formular } from '../data/content';
 
 const inputClass =
   'w-full rounded-md border border-neutral-200 bg-white px-4 py-3 text-sm shadow-sm placeholder:text-neutral-400 focus:border-brand focus:outline-none';
+const selectClass = `${inputClass} cursor-pointer appearance-none pr-10`;
 ---
 
 <section id="nezavazna-ponuka" class="scroll-mt-8 bg-white">
@@ -54,14 +55,14 @@ const inputClass =
 
       <div>
         <label for="typ-projektu" class="mb-1 block font-heading font-semibold">{formular.polia.typProjektu}</label>
-        <select id="typ-projektu" name="typ-projektu" class={inputClass}>
+        <select id="typ-projektu" name="typ-projektu" class={selectClass}>
           {formular.typProjektuMoznosti.map((moznost) => <option value={moznost}>{moznost}</option>)}
         </select>
       </div>
 
       <div>
         <label for="typ-strechy" class="mb-1 block font-heading font-semibold">{formular.polia.typStrechy}</label>
-        <select id="typ-strechy" name="typ-strechy" class={inputClass}>
+        <select id="typ-strechy" name="typ-strechy" class={selectClass}>
           {formular.typStrechyMoznosti.map((moznost) => <option value={moznost}>{moznost}</option>)}
         </select>
       </div>
@@ -92,3 +93,14 @@ const inputClass =
     </form>
   </div>
 </section>
+
+<style>
+  /* Vlastná šípka pre selecty — natívny vzhľad je vypnutý (appearance-none),
+     aby Safari rešpektovalo padding a zaoblenie ako pri ostatných poliach. */
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23525252' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    background-size: 1rem;
+  }
+</style>
