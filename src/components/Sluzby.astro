@@ -8,14 +8,14 @@ const ikony: Record<string, string> = {
 };
 ---
 
-<section class="bg-[linear-gradient(180deg,#444444_0%,#ffffff_65%)]">
+<section class="bg-[linear-gradient(180deg,#444444_0%,#ffffff_90%)]">
   <div class="mx-auto max-w-6xl px-4 py-20">
     <h2 class="text-center font-heading text-[46px] font-bold text-white">{sluzby.nadpis}</h2>
     <p class="mt-4 text-center text-[20px] text-white">{sluzby.podnadpis}</p>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {
         sluzby.karty.map((karta) => (
-          <div class="rounded-2xl bg-white p-8 text-center shadow-lg">
+          <div class="rounded-[2.1875rem] bg-white p-8 text-center shadow-lg">
             <span class="mx-auto inline-block text-brand" set:html={ikony[karta.ikona]} />
             <h3 class="mt-4 font-heading text-[22px] font-bold">{karta.titulok}</h3>
             <p class="mt-4 text-[16px] text-neutral-600">{karta.text}</p>
