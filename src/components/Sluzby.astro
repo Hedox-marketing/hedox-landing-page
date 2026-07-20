@@ -2,23 +2,23 @@
 import { sluzby } from '../data/content';
 
 const ikony: Record<string, string> = {
-  vietor: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-10 w-10"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h9.75a2.25 2.25 0 1 0-2.25-2.25M3.75 12.75h13.5a2.25 2.25 0 1 1-2.25 2.25M3.75 16.5h6a1.875 1.875 0 1 1-1.875 1.875" /></svg>`,
-  stit: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-10 w-10"><path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Z" clip-rule="evenodd" /></svg>`,
-  vrstvy: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-10 w-10"><path d="M11.644 1.59a.75.75 0 0 1 .712 0l9.75 5.25a.75.75 0 0 1 0 1.32l-9.75 5.25a.75.75 0 0 1-.712 0l-9.75-5.25a.75.75 0 0 1 0-1.32l9.75-5.25Z" /><path d="m3.265 10.602 7.668 4.129a2.25 2.25 0 0 0 2.134 0l7.668-4.13 1.37.739a.75.75 0 0 1 0 1.32l-9.75 5.25a.75.75 0 0 1-.71 0l-9.75-5.25a.75.75 0 0 1 0-1.32l1.37-.738Z" /><path d="m10.933 19.231-7.668-4.13-1.37.739a.75.75 0 0 0 0 1.32l9.75 5.25c.221.12.489.12.71 0l9.75-5.25a.75.75 0 0 0 0-1.32l-1.37-.738-7.668 4.13a2.25 2.25 0 0 1-2.134-.001Z" /></svg>`,
+  vietor: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-[3.875rem] w-[4.9375rem]"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h9.75a2.25 2.25 0 1 0-2.25-2.25M3.75 12.75h13.5a2.25 2.25 0 1 1-2.25 2.25M3.75 16.5h6a1.875 1.875 0 1 1-1.875 1.875" /></svg>`,
+  stit: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-[3.875rem] w-[4.9375rem]"><path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Z" clip-rule="evenodd" /></svg>`,
+  vrstvy: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-[3.875rem] w-[4.9375rem]"><path d="M11.644 1.59a.75.75 0 0 1 .712 0l9.75 5.25a.75.75 0 0 1 0 1.32l-9.75 5.25a.75.75 0 0 1-.712 0l-9.75-5.25a.75.75 0 0 1 0-1.32l9.75-5.25Z" /><path d="m3.265 10.602 7.668 4.129a2.25 2.25 0 0 0 2.134 0l7.668-4.13 1.37.739a.75.75 0 0 1 0 1.32l-9.75 5.25a.75.75 0 0 1-.71 0l-9.75-5.25a.75.75 0 0 1 0-1.32l1.37-.738Z" /><path d="m10.933 19.231-7.668-4.13-1.37.739a.75.75 0 0 0 0 1.32l9.75 5.25c.221.12.489.12.71 0l9.75-5.25a.75.75 0 0 0 0-1.32l-1.37-.738-7.668 4.13a2.25 2.25 0 0 1-2.134-.001Z" /></svg>`,
 };
 ---
 
 <section class="bg-[linear-gradient(180deg,#444444_0%,#ffffff_65%)]">
   <div class="mx-auto max-w-6xl px-4 py-20">
     <h2 class="text-center font-heading text-[46px] font-bold text-white">{sluzby.nadpis}</h2>
-    <p class="mt-4 text-center text-white">{sluzby.podnadpis}</p>
+    <p class="mt-4 text-center text-[20px] text-white">{sluzby.podnadpis}</p>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {
         sluzby.karty.map((karta) => (
           <div class="rounded-2xl bg-white p-8 text-center shadow-lg">
             <span class="mx-auto inline-block text-brand" set:html={ikony[karta.ikona]} />
-            <h3 class="mt-4 font-heading text-xl font-bold">{karta.titulok}</h3>
-            <p class="mt-4 text-sm text-neutral-600">{karta.text}</p>
+            <h3 class="mt-4 font-heading text-[22px] font-bold">{karta.titulok}</h3>
+            <p class="mt-4 text-[16px] text-neutral-600">{karta.text}</p>
           </div>
         ))
       }
