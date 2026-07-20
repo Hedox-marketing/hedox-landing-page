@@ -52,6 +52,8 @@ netlify.toml            # build nastavenia pre Netlify
 ## Formulár (Netlify Forms)
 
 - Polia podľa predlohy: meno, e-mail, telefón, mesto/obec, typ projektu (select: novostavba/rekonštrukcia), typ strechy (select: väzník/dutý trám/pultová/iné), poznámka. Presné labely a povinnosť polí sa prevezmú zo živého webu.
+- **GDPR súhlas:** povinný checkbox „Súhlasím so spracovaním osobných údajov“ s linkom na ochranu osobných údajov (pôvodná URL na hedox.sk). Bez zaškrtnutia sa formulár neodošle (HTML `required`).
+- **reCAPTCHA:** natívna Netlify reCAPTCHA v2 (`data-netlify-recaptcha="true"` + `<div data-netlify-recaptcha="true">`). Kľúče dodáva Netlify automaticky, netreba Google účet. Pri AJAX odoslaní sa hodnota `g-recaptcha-response` pošle spolu s ostatnými poľami; bez vyplnenej captchy sa zobrazí chybová hláška. Widget sa zobrazuje len na produkcii (Netlify) — lokálne sa formulár renderuje bez neho.
 - `data-netlify="true"` + honeypot pole (`netlify-honeypot`) proti spamu.
 - Keďže odoslanie je cez AJAX (fetch POST na `/`), v HTML bude aj statická verzia formulára (skrytá alebo prítomná v build outpute), aby Netlify formulár pri builde zaregistrovalo.
 - **Po odoslaní:** formulár sa skryje a na jeho mieste sa zobrazí ďakovacia správa (bez presmerovania). Kód sa napíše tak, aby prechod na samostatnú `/dakujeme` stránku v budúcnosti bola zmena jedného riadku (redirect po úspešnom fetchi).
