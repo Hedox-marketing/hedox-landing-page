@@ -8,9 +8,9 @@ import { postup } from '../data/content';
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {
         postup.kroky.map((krok) => (
-          <div class="rounded-xl bg-white p-6 text-center shadow-lg">
-            <h3 class="font-heading text-sm font-bold">{krok.titulok}</h3>
-            <p class="mt-3 text-xs leading-relaxed text-neutral-600">{krok.text}</p>
+          <div class="flex flex-col items-center justify-center rounded-[2.1875rem] bg-brand-dark p-6 text-center text-white shadow-lg">
+            <h3 class="font-heading text-[18px] font-bold">{krok.titulok}</h3>
+            <p class="mt-3 text-[16px] leading-snug">{krok.text}</p>
           </div>
         ))
       }
