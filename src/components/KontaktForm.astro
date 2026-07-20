@@ -1,0 +1,127 @@
+---
+import { formular } from '../data/content';
+
+const inputClass =
+  'w-full rounded-md border border-neutral-200 bg-white px-4 py-3 text-sm shadow-sm placeholder:text-neutral-400 focus:border-brand focus:outline-none';
+---
+
+<section id="formular" class="scroll-mt-8 bg-white">
+  <div class="mx-auto max-w-2xl px-4 py-20">
+    <h2 class="text-center font-heading text-4xl font-bold">{formular.nadpis}</h2>
+    <p class="mx-auto mt-4 max-w-lg text-center text-neutral-600">{formular.podnadpis}</p>
+
+    <form
+      id="cenova-ponuka-form"
+      name="cenova-ponuka"
+      method="POST"
+      action="/"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      data-netlify-recaptcha="true"
+      class="mt-12 space-y-5"
+    >
+      <input type="hidden" name="form-name" value="cenova-ponuka" />
+      <p class="hidden">
+        <label>Nevypĺňajte: <input name="bot-field" /></label>
+      </p>
+
+      <div>
+        <label for="meno" class="mb-1 block font-heading font-semibold">{formular.polia.meno}</label>
+        <input id="meno" name="meno" type="text" required placeholder={formular.polia.meno} class={inputClass} />
+      </div>
+
+      <div>
+        <label for="email" class="mb-1 block font-heading font-semibold">{formular.polia.email}</label>
+        <input id="email" name="email" type="email" required placeholder={formular.polia.email} class={inputClass} />
+      </div>
+
+      <div>
+        <label for="telefon" class="mb-1 block font-heading font-semibold">{formular.polia.telefon}</label>
+        <input id="telefon" name="telefon" type="tel" required placeholder={formular.polia.telefon} class={inputClass} />
+      </div>
+
+      <div>
+        <label for="mesto" class="mb-1 block font-heading font-semibold">{formular.polia.mesto}</label>
+        <input id="mesto" name="mesto-obec" type="text" required placeholder={formular.polia.mesto} class={inputClass} />
+      </div>
+
+      <div>
+        <label for="typ-projektu" class="mb-1 block font-heading font-semibold">{formular.polia.typProjektu}</label>
+        <select id="typ-projektu" name="typ-projektu" class={inputClass}>
+          {formular.typProjektuMoznosti.map((moznost) => <option value={moznost}>{moznost}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label for="typ-strechy" class="mb-1 block font-heading font-semibold">{formular.polia.typStrechy}</label>
+        <select id="typ-strechy" name="typ-strechy" class={inputClass}>
+          {formular.typStrechyMoznosti.map((moznost) => <option value={moznost}>{moznost}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label for="poznamka" class="mb-1 block font-heading font-semibold">{formular.polia.poznamka}</label>
+        <textarea id="poznamka" name="poznamka" rows="4" class={inputClass}></textarea>
+      </div>
+
+      <label class="flex items-start gap-3 text-sm text-neutral-700">
+        <input type="checkbox" name="gdpr-suhlas" value="áno" required class="mt-0.5 h-4 w-4 accent-brand" />
+        <span>
+          <a href={formular.gdprUrl} target="_blank" rel="noopener" class="underline hover:text-brand">
+            {formular.gdprText}
+          </a>
+        </span>
+      </label>
+
+      <div data-netlify-recaptcha="true"></div>
+
+      <button
+        type="submit"
+        class="w-full rounded-md bg-pill py-4 font-heading font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
+      >
+        {formular.odoslat}
+      </button>
+    </form>
+
+    <div id="form-uspech" hidden class="mt-12 rounded-lg bg-pill/10 p-8 text-center">
+      <p class="font-heading text-xl font-semibold text-brand-dark">{formular.uspech}</p>
+    </div>
+
+    <p id="form-chyba" hidden class="mt-4 rounded-md bg-red-50 p-4 text-center text-sm text-red-700">
+      {formular.chyba}
+    </p>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('cenova-ponuka-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const tlacidlo = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const chyba = document.getElementById('form-chyba');
+    if (tlacidlo) tlacidlo.disabled = true;
+    chyba?.setAttribute('hidden', '');
+
+    try {
+      const data = new FormData(form);
+      const body = new URLSearchParams(
+        [...data.entries()].map(([kluc, hodnota]) => [kluc, String(hodnota)])
+      );
+      const odpoved = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+      if (!odpoved.ok) throw new Error(`HTTP ${odpoved.status}`);
+
+      // Budúci prechod na samostatnú ďakovaciu stránku = nahradiť nasledujúce
+      // dva riadky za: window.location.href = '/dakujeme';
+      form.hidden = true;
+      document.getElementById('form-uspech')?.removeAttribute('hidden');
+    } catch {
+      chyba?.removeAttribute('hidden');
+      if (tlacidlo) tlacidlo.disabled = false;
+    }
+  });
+</script>
