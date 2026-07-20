@@ -7,15 +7,17 @@ import { realizacie } from '../data/content';
     <h2 class="text-center font-heading text-[46px] font-bold">{realizacie.nadpis}</h2>
     <div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
       {
-        realizacie.obrazky.map((src, i) => (
+        realizacie.obrazky.map((obrazok, i) => (
           <button
             type="button"
             class="galeria-polozka cursor-pointer"
             aria-label={`Zobraziť realizáciu ${i + 1} vo veľkom`}
           >
             <img
-              src={src}
-              alt={`Realizácia fúkanej izolácie ${i + 1}`}
+              src={obrazok.src}
+              alt={obrazok.alt}
+              width="1440"
+              height="1920"
               class="aspect-[3/4] w-full rounded-lg object-cover transition hover:opacity-85"
               loading="lazy"
             />
@@ -54,8 +56,10 @@ import { realizacie } from '../data/content';
 
   <img
     id="galeria-obrazok"
-    src={realizacie.obrazky[0]}
+    src={realizacie.obrazky[0].src}
     alt="Realizácia fúkanej izolácie"
+    width="1440"
+    height="1920"
     class="max-h-[85vh] max-w-[85vw] rounded-lg object-contain"
   />
 

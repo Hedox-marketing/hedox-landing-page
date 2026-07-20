@@ -11,12 +11,48 @@ import Faq from '../components/Faq.astro';
 import KontaktForm from '../components/KontaktForm.astro';
 import Realizacie from '../components/Realizacie.astro';
 import Footer from '../components/Footer.astro';
+import { faq, footer } from '../data/content';
+
+const popis =
+  'Ušetrite až 30 % na účtoch za kúrenie vďaka našej fúkanej izolácii. Rýchla a čistá realizácia s garanciou kvality. Kontaktujte nás ešte dnes!';
+
+const firmaLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: 'Hedox',
+  description: popis,
+  url: Astro.site?.href,
+  image: new URL('/images/hero-bg.webp', Astro.site).href,
+  logo: new URL('/images/logo-hedox.webp', Astro.site).href,
+  email: footer.email,
+  telephone: '+421905882201',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Jarná 75',
+    addressLocality: 'Cífer',
+    postalCode: '919 43',
+    addressCountry: 'SK',
+  },
+  areaServed: 'Slovensko',
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.polozky.map((polozka) => ({
+    '@type': 'Question',
+    name: polozka.otazka,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: polozka.odpoved,
+    },
+  })),
+};
 ---
 
-<Layout
-  title="Znížte náklady s fúkanou izoláciou"
-  description="Ušetrite až 30 % na účtoch za kúrenie vďaka našej fúkanej izolácii. Rýchla a čistá realizácia s garanciou kvality. Kontaktujte nás ešte dnes!"
->
+<Layout title="Znížte náklady s fúkanou izoláciou" description={popis}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(firmaLd)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />
   <Header />
   <Hero />
   <TrustBar />

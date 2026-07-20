@@ -148,10 +148,22 @@ export const formular = {
 export const realizacie = {
   nadpis: 'Naše realizácie',
   obrazky: [
-    '/images/realizacia-01.webp',
-    '/images/realizacia-02.webp',
-    '/images/realizacia-03.webp',
-    '/images/realizacia-04.webp',
+    {
+      src: '/images/realizacia-01.webp',
+      alt: 'Fúkaná izolácia aplikovaná na strope podkrovia rodinného domu',
+    },
+    {
+      src: '/images/realizacia-02.webp',
+      alt: 'Zateplenie šikmej strechy fúkanou izoláciou medzi trámami krovu',
+    },
+    {
+      src: '/images/realizacia-03.webp',
+      alt: 'Zateplené podkrovie so strešným oknom po realizácii fúkanej izolácie',
+    },
+    {
+      src: '/images/realizacia-04.webp',
+      alt: 'Vrstva fúkanej izolácie na strope väzníkového krovu',
+    },
   ],
 };
 
