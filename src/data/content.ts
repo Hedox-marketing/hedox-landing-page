@@ -8,10 +8,10 @@ export const hero = {
 };
 
 export const trustItems = [
-  { ikona: 'dom', text: 'Viac ako 300 úspešných realizácií' },
-  { ikona: 'medaila', text: '10 rokov skúseností' },
-  { ikona: 'stit', text: 'Certifikované materiály A1' },
-  { ikona: 'hodiny', text: 'Nezáväzná kalkulácia do 24 hodín' },
+  { ikona: 'dom', riadky: ['Viac ako 300', 'úspešných realizácií'] },
+  { ikona: 'medaila', riadky: ['10 rokov', 'skúseností'] },
+  { ikona: 'stit', riadky: ['Certifikované', 'materiály A1'] },
+  { ikona: 'hodiny', riadky: ['Nezáväzná kalkulácia', 'do 24 hodín'] },
 ] as const;
 
 export const sluzby = {
