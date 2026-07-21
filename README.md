@@ -1,6 +1,7 @@
 # Hedox – landing page
 
 Landing page pre [Hedox](https://hedox-landing-page.netlify.app) – fúkanú izoláciu (zateplenie podkroví, stropov a väzníkových striech). Jednostránkový web s kontaktným formulárom na nezáväznú cenovú ponuku.
+Originál web [hedox.sk](https://www.hedox.sk/)
 
 ## Technológie
 
