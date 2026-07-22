@@ -26,7 +26,7 @@ src/
   data/
     content.ts    # všetky texty webu na jednom mieste
   layouts/
-    Layout.astro  # <head>, meta tagy, fonty, miesto pre tracking kódy
+    Layout.astro  # <head>, meta tagy, fonty, tracking kódy (GTM)
   pages/
     index.astro   # hlavná stránka – skladá sekcie
     dakujeme.astro# ďakovacia stránka po odoslaní formulára
@@ -59,4 +59,7 @@ Každý push do vetvy `main` spustí automatický deploy na Netlify (build nasta
 - štruktúrované dáta JSON-LD: `HomeAndConstructionBusiness` a `FAQPage`
 - ďakovacia stránka má `noindex` a nie je v sitemape
 
-Miesta pre budúce meracie kódy (Meta Pixel / GA4) sú vyznačené komentármi v `src/layouts/Layout.astro`.
+## Tracking
+
+- **Google Tag Manager** (`GTM-5Z64TM7`) je vložený v `src/layouts/Layout.astro` – skript v `<head>` a noscript varianta hneď za `<body>`, platí pre všetky stránky
+- ďalšie meracie kódy (Meta Pixel, GA4) sa nasadzujú cez GTM kontajner, netreba ich pridávať do kódu
