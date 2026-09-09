@@ -21,6 +21,7 @@ const selectClass = `${inputClass} cursor-pointer appearance-none pr-10`;
       class="mt-12 grid gap-5 md:grid-cols-2"
     >
       <input type="hidden" name="form-name" value="cenova-ponuka" />
+      <input type="hidden" name="utm" value="" />
       <p class="hidden">
         <label>Nevypĺňajte: <input name="bot-field" /></label>
       </p>
@@ -93,6 +94,14 @@ const selectClass = `${inputClass} cursor-pointer appearance-none pr-10`;
     </form>
   </div>
 </section>
+
+<script>
+  // Skryté pole "utm" — celý query string z URL za "?" (napr. utm_source=facebook&utm_medium=cpc).
+  const utmPole = document.querySelector<HTMLInputElement>('form[name="cenova-ponuka"] input[name="utm"]');
+  if (utmPole && location.search.length > 1) {
+    utmPole.value = location.search.slice(1);
+  }
+</script>
 
 <style>
   /* Vlastná šípka pre selecty — natívny vzhľad je vypnutý (appearance-none),
