@@ -30,3 +30,10 @@ import { dakujeme } from '../data/content';
   </section>
   <Footer />
 </Layout>
+
+<script>
+  // Konverzný event pre GTM — stránka /dakujeme sa zobrazí len po úspešnom
+  // odoslaní formulára, preto sa event posiela tu a nie pri kliknutí na tlačidlo.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'generate_lead' });
+</script>
